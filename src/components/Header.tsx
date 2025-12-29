@@ -31,10 +31,10 @@ export default function Header() {
                 <div className="absolute top-full left-0 mt-2 w-48 bg-background/95 backdrop-blur-lg border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <a href="#about" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors rounded-t-lg">О нас</a>
                   <a href="#delivery" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors">Доставка</a>
-                  <a href="#payment" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors rounded-b-lg">Оплата</a>
+                  <a href="#payment" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors">Оплата</a>
+                  <a href="#contacts" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors rounded-b-lg">Контакты</a>
                 </div>
               </div>
-              <a href="#contacts" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
               <Button size="sm">Связаться</Button>
               <button 
                 className="p-2 hover:bg-secondary rounded-lg transition-colors"
