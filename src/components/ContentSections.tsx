@@ -385,11 +385,11 @@ export default function ContentSections() {
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                   <Icon name="Package" size={28} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Курьерская доставка</h3>
+                <h3 className="text-xl font-semibold mb-3">Бесплатная доставка</h3>
                 <p className="text-muted-foreground mb-4">
                   Доставка по Москве в течение 1-2 дней. По России — 3-7 дней.
                 </p>
-                <div className="text-2xl font-bold text-primary">от 300 ₽</div>
+                <div className="text-2xl font-bold text-primary">от 10000 ₽</div>
               </CardContent>
             </Card>
 
