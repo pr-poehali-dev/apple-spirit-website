@@ -89,6 +89,16 @@ export default function CatalogSection() {
     return products.filter(p => p.category === categoryId).length;
   };
 
+  const handleCategoryClick = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    setTimeout(() => {
+      const productsSection = document.getElementById('products-list');
+      if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   return (
     <>
       <section id="catalog" className="py-24 md:py-32">
@@ -104,7 +114,7 @@ export default function CatalogSection() {
                 key={category.id}
                 className="group cursor-pointer overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50"
                 style={{ animationDelay: `${idx * 50}ms` }}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => handleCategoryClick(category.id)}
               >
                 <CardContent className="p-0">
                   <div className="grid grid-cols-[140px_1fr] items-center">
@@ -142,7 +152,7 @@ export default function CatalogSection() {
             ))}
           </div>
 
-          <div className="fade-on-scroll flex flex-wrap justify-center gap-3 mb-12">
+          <div id="products-list" className="fade-on-scroll flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((cat) => (
               <Button
                 key={cat.id}
