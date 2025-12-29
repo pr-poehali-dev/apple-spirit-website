@@ -708,6 +708,38 @@ export default function ContentSections() {
                       className="w-full h-full"
                     />
                   </div>
+                  <div className="p-4 bg-secondary/30 border-t">
+                    <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+                      <Button 
+                        variant="default" 
+                        className="w-full sm:w-auto"
+                        asChild
+                      >
+                        <a 
+                          href="https://yandex.ru/maps/?rtext=~55.771899,37.680744" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          <Icon name="Navigation" size={18} className="mr-2" />
+                          Построить маршрут
+                        </a>
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="w-full sm:w-auto"
+                        asChild
+                      >
+                        <a 
+                          href="https://yandex.ru/maps/213/moscow/?ll=37.680744%2C55.771899&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzA2ODU0MhJE0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINGD0LvQuNGG0LAg0JTQvtC60YPQutC40L3QsCwgOCDRgdGC0YDQvtC10L3QuNC1IDMiCg1L6V9CFfvDXEI%2C&z=17" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          <Icon name="ExternalLink" size={18} className="mr-2" />
+                          Открыть в Яндекс.Картах
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
