@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -8,6 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import { Badge } from '@/components/ui/badge';
+import { useCart } from '@/contexts/CartContext';
 
 interface Product {
   id: number;
@@ -24,7 +26,16 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ product, open, onOpenChange }: ProductModalProps) {
+  const { addToCart } = useCart();
+  const [added, setAdded] = useState(false);
+
   if (!product) return null;
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
 
   const categoryNames: Record<string, string> = {
     buttons: 'Пуговицы',
@@ -98,9 +109,23 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
               </div>
 
               <div className="flex gap-3">
-                <Button className="flex-1 h-12" size="lg">
-                  <Icon name="ShoppingCart" className="mr-2" size={20} />
-                  В корзину
+                <Button 
+                  className="flex-1 h-12" 
+                  size="lg"
+                  onClick={handleAddToCart}
+                  disabled={added}
+                >
+                  {added ? (
+                    <>
+                      <Icon name="Check" className="mr-2" size={20} />
+                      Добавлено
+                    </>
+                  ) : (
+                    <>
+                      <Icon name="ShoppingCart" className="mr-2" size={20} />
+                      В корзину
+                    </>
+                  )}
                 </Button>
                 <Button variant="outline" size="lg" className="h-12 w-12 p-0">
                   <Icon name="Heart" size={20} />

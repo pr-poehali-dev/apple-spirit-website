@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import ProductModal from '@/components/ProductModal';
+import { useCart } from '@/contexts/CartContext';
 
 interface Product {
   id: number;
@@ -15,6 +16,7 @@ interface Product {
 }
 
 export default function ContentSections() {
+  const { addToCart } = useCart();
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -116,6 +118,7 @@ export default function ContentSections() {
                       variant="outline"
                       onClick={(e) => {
                         e.stopPropagation();
+                        addToCart(product);
                       }}
                     >
                       <Icon name="ShoppingCart" size={16} />
