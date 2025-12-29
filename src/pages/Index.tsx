@@ -67,10 +67,15 @@ function Index() {
             <div className="text-2xl font-bold tracking-tight">ШвейПро</div>
             <div className="hidden md:flex items-center gap-8">
               <a href="#catalog" className="text-sm font-medium hover:text-primary transition-colors">Каталог</a>
+              <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">О нас</a>
               <a href="#benefits" className="text-sm font-medium hover:text-primary transition-colors">Преимущества</a>
+              <a href="#delivery" className="text-sm font-medium hover:text-primary transition-colors">Доставка</a>
               <a href="#contacts" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
               <Button size="sm">Связаться</Button>
             </div>
+            <button className="md:hidden">
+              <Icon name="Menu" size={24} />
+            </button>
           </div>
         </nav>
       </header>
@@ -87,10 +92,12 @@ function Index() {
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
                 Качественные материалы для профессионалов и любителей шитья
               </p>
-              <Button size="lg" className="h-14 px-8 text-lg">
-                Смотреть каталог
-                <Icon name="ArrowRight" className="ml-2" size={20} />
-              </Button>
+              <a href="#catalog">
+                <Button size="lg" className="h-14 px-8 text-lg">
+                  Смотреть каталог
+                  <Icon name="ArrowRight" className="ml-2" size={20} />
+                </Button>
+              </a>
             </div>
           </div>
         </section>
@@ -141,7 +148,47 @@ function Index() {
           </div>
         </section>
 
-        <section id="benefits" className="py-24 md:py-32 bg-secondary/30">
+        <section id="about" className="py-24 md:py-32 bg-secondary/30">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="fade-on-scroll">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">О компании</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  ШвейПро — ведущий поставщик швейной фурнитуры в России с более чем 10-летней историей. 
+                  Мы работаем напрямую с европейскими и азиатскими производителями, что позволяет 
+                  предлагать лучшие цены на рынке.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Наша миссия — обеспечить профессионалов и любителей швейного дела качественными 
+                  материалами и комплектующими, которые помогут воплотить в жизнь любые творческие идеи.
+                </p>
+                <div className="grid grid-cols-3 gap-8 mt-8">
+                  <div>
+                    <div className="text-4xl font-bold text-primary mb-2">5000+</div>
+                    <div className="text-sm text-muted-foreground">Клиентов</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-bold text-primary mb-2">2000+</div>
+                    <div className="text-sm text-muted-foreground">Товаров</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl font-bold text-primary mb-2">10+</div>
+                    <div className="text-sm text-muted-foreground">Лет работы</div>
+                  </div>
+                </div>
+              </div>
+              <div className="fade-on-scroll">
+                <img 
+                  src="https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/48424235-062c-44e5-b4ec-a0df90b538da.jpg" 
+                  alt="О компании"
+                  className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="benefits" className="py-24 md:py-32">
           <div className="container mx-auto px-6">
             <div className="fade-on-scroll max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Почему выбирают нас</h2>
@@ -158,6 +205,75 @@ function Index() {
                   <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="delivery" className="py-24 md:py-32 bg-secondary/30">
+          <div className="container mx-auto px-6">
+            <div className="fade-on-scroll max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Доставка и оплата</h2>
+              <p className="text-lg text-muted-foreground">Удобные способы получения и оплаты заказа</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <Card className="fade-on-scroll">
+                <CardContent className="p-8">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon name="Package" size={28} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Курьерская доставка</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Доставка по Москве в течение 1-2 дней. По России — 3-7 дней.
+                  </p>
+                  <div className="text-2xl font-bold text-primary">от 300 ₽</div>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll" style={{ animationDelay: '100ms' }}>
+                <CardContent className="p-8">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon name="MapPin" size={28} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Самовывоз</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Заберите заказ из нашего офиса в Москве в удобное время.
+                  </p>
+                  <div className="text-2xl font-bold text-primary">Бесплатно</div>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll" style={{ animationDelay: '200ms' }}>
+                <CardContent className="p-8">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon name="CreditCard" size={28} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Способы оплаты</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Банковские карты, наличные, безналичный расчет для юр. лиц.
+                  </p>
+                  <div className="text-sm text-muted-foreground mt-2">Все способы</div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="fade-on-scroll mt-16 max-w-4xl mx-auto">
+              <Card>
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Icon name="Info" size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">Бесплатная доставка</h3>
+                      <p className="text-muted-foreground">
+                        При заказе от 5000 ₽ доставка по Москве бесплатная. При заказе от 10 000 ₽ — 
+                        бесплатная доставка по всей России!
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
