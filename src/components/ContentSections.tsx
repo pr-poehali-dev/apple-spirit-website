@@ -541,6 +541,51 @@ export default function ContentSections() {
                       </div>
                     </div>
                   </div>
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon name="Share2" size={20} className="text-primary" />
+                      <span className="font-semibold">Социальные сети:</span>
+                    </div>
+                    <div className="flex gap-3 ml-7">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="hover:bg-primary hover:text-white transition-colors"
+                        asChild
+                      >
+                        <a href="https://vk.com" target="_blank" rel="noopener noreferrer">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.18 14.53h-1.28c-.54 0-.71-.43-1.69-1.43-.85-.83-1.23-.94-1.44-.94-.3 0-.38.08-.38.46v1.3c0 .35-.11.56-1.03.56-1.52 0-3.2-.92-4.38-2.64-1.78-2.42-2.27-4.24-2.27-4.61 0-.21.08-.41.46-.41h1.28c.34 0 .47.16.6.53.65 1.78 1.74 3.33 2.19 3.33.17 0 .24-.08.24-.5v-1.93c-.06-.97-.57-1.05-.57-1.39 0-.17.14-.33.36-.33h2.01c.28 0 .39.16.39.5v2.61c0 .28.13.39.21.39.17 0 .31-.11.62-.42 1.02-1.14 1.74-2.9 1.74-2.9.09-.21.26-.41.6-.41h1.28c.4 0 .49.21.4.5-.17.78-1.86 3.28-1.86 3.28-.14.23-.19.33 0 .59.14.19.6.59 1.21 1.27.49.55 1.06 1.16 1.18 1.53.07.39-.19.59-.59.59z"/>
+                          </svg>
+                        </a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="hover:bg-primary hover:text-white transition-colors"
+                        asChild
+                      >
+                        <a href="https://t.me" target="_blank" rel="noopener noreferrer">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                          </svg>
+                        </a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="hover:bg-primary hover:text-white transition-colors"
+                        asChild
+                      >
+                        <a href="https://my.mail.ru" target="_blank" rel="noopener noreferrer">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8s1.12-2.5 2.5-2.5zm0 13c-2.03 0-3.84-1.02-4.91-2.58.03-1.62 3.27-2.51 4.91-2.51s4.88.89 4.91 2.51C15.84 17.48 14.03 18.5 12 18.5z"/>
+                          </svg>
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
