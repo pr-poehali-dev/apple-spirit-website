@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { Badge } from '@/components/ui/badge';
 
 export default function Header() {
+  const [cartCount] = useState(3);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <nav className="container mx-auto px-6 py-4">
@@ -24,6 +28,14 @@ export default function Header() {
             </div>
             <a href="#contacts" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
             <Button size="sm">Связаться</Button>
+            <button className="relative p-2 hover:bg-secondary rounded-lg transition-colors">
+              <Icon name="ShoppingCart" size={22} />
+              {cartCount > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                  {cartCount}
+                </Badge>
+              )}
+            </button>
           </div>
           <button className="md:hidden">
             <Icon name="Menu" size={24} />

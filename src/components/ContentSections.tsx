@@ -4,9 +4,20 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import ProductModal from '@/components/ProductModal';
+
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  image: string;
+}
 
 export default function ContentSections() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -80,7 +91,15 @@ export default function ContentSections() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((product, idx) => (
-              <Card key={product.id} className="fade-on-scroll overflow-hidden group hover:shadow-xl transition-all duration-300" style={{ animationDelay: `${idx * 100}ms` }}>
+              <Card 
+                key={product.id} 
+                className="fade-on-scroll overflow-hidden group hover:shadow-xl transition-all duration-300 cursor-pointer" 
+                style={{ animationDelay: `${idx * 100}ms` }}
+                onClick={() => {
+                  setSelectedProduct(product);
+                  setIsModalOpen(true);
+                }}
+              >
                 <div className="aspect-square overflow-hidden bg-secondary">
                   <img 
                     src={product.image} 
@@ -92,7 +111,13 @@ export default function ContentSections() {
                   <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-primary">{product.price}</span>
-                    <Button size="sm" variant="outline">
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
                       <Icon name="ShoppingCart" size={16} />
                     </Button>
                   </div>
@@ -100,6 +125,12 @@ export default function ContentSections() {
               </Card>
             ))}
           </div>
+          
+          <ProductModal 
+            product={selectedProduct}
+            open={isModalOpen}
+            onOpenChange={setIsModalOpen}
+          />
         </div>
       </section>
 
