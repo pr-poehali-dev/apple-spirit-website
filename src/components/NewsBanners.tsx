@@ -56,9 +56,7 @@ export default function NewsBanners() {
   };
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-6">
-        <div className="relative overflow-hidden rounded-2xl h-[400px] md:h-[500px] group">
+    <div className="relative overflow-hidden rounded-2xl h-[500px] lg:h-[600px] group shadow-2xl">
           {banners.map((banner, idx) => (
             <div
               key={banner.id}
@@ -76,26 +74,24 @@ export default function NewsBanners() {
               />
               <div className={`absolute inset-0 bg-gradient-to-r ${banner.gradient}`} />
               
-              <div className="relative h-full flex items-center">
-                <div className="container mx-auto px-6 md:px-12">
-                  <div className="max-w-2xl">
-                    <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-4">
-                      {banner.badge}
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                      {banner.title}
-                    </h2>
-                    <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
-                      {banner.description}
-                    </p>
-                    <Button 
-                      size="lg" 
-                      className="bg-white text-primary hover:bg-white/90 h-12 px-8"
-                    >
-                      {banner.buttonText}
-                      <Icon name="ArrowRight" size={18} className="ml-2" />
-                    </Button>
-                  </div>
+              <div className="relative h-full flex items-center px-8 md:px-12">
+                <div className="max-w-xl">
+                  <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold rounded-full mb-3">
+                    {banner.badge}
+                  </span>
+                  <h2 className="text-2xl md:text-4xl font-bold text-white mb-3 leading-tight">
+                    {banner.title}
+                  </h2>
+                  <p className="text-base md:text-lg text-white/90 mb-4 leading-relaxed">
+                    {banner.description}
+                  </p>
+                  <Button 
+                    size="default" 
+                    className="bg-white text-primary hover:bg-white/90"
+                  >
+                    {banner.buttonText}
+                    <Icon name="ArrowRight" size={16} className="ml-2" />
+                  </Button>
                 </div>
               </div>
             </div>
@@ -115,21 +111,19 @@ export default function NewsBanners() {
             <Icon name="ChevronRight" size={24} className="text-white" />
           </button>
 
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-            {banners.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => goToSlide(idx)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  idx === currentSlide 
-                    ? 'bg-white w-8' 
-                    : 'bg-white/50 hover:bg-white/75'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+        {banners.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goToSlide(idx)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              idx === currentSlide 
+                ? 'bg-white w-8' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+          />
+        ))}
       </div>
-    </section>
+    </div>
   );
 }

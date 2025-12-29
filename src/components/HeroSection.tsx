@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import NewsBanners from '@/components/NewsBanners';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -11,18 +12,10 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative overflow-hidden h-[90vh] min-h-[600px]">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/48424235-062c-44e5-b4ec-a0df90b538da.jpg)',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60"></div>
-      </div>
-
-      <div className="relative container mx-auto px-6 h-full flex items-center">
-        <div className={`max-w-2xl transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+    <section ref={heroRef} className="relative overflow-hidden min-h-[600px] py-24">
+      <div className="relative container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
           <div className="inline-block mb-4 px-4 py-2 bg-primary/10 rounded-full">
             <span className="text-primary font-semibold text-sm">✨ Новая коллекция 2025</span>
           </div>
@@ -69,12 +62,11 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <a href="#catalog">
-          <Icon name="ChevronDown" size={32} className="text-muted-foreground" />
-        </a>
+        
+        <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+          <NewsBanners />
+        </div>
+        </div>
       </div>
     </section>
   );
