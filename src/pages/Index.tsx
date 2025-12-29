@@ -4,11 +4,20 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 function Index() {
   const [activeCategory, setActiveCategory] = useState('all');
   const heroRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [infoMenuOpen, setInfoMenuOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,12 +73,22 @@ function Index() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold tracking-tight">ШвейПро</div>
-            <div className="hidden md:flex items-center gap-8">
+            <div className="text-2xl font-bold tracking-tight">ТК Эксклюзив</div>
+            <div className="hidden md:flex items-center gap-6">
               <a href="#catalog" className="text-sm font-medium hover:text-primary transition-colors">Каталог</a>
-              <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">О нас</a>
-              <a href="#benefits" className="text-sm font-medium hover:text-primary transition-colors">Преимущества</a>
-              <a href="#delivery" className="text-sm font-medium hover:text-primary transition-colors">Доставка</a>
+              <a href="#promo" className="text-sm font-medium hover:text-primary transition-colors">Акции</a>
+              <a href="#blog" className="text-sm font-medium hover:text-primary transition-colors">Блог</a>
+              <div className="relative group">
+                <button className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+                  Информация
+                  <Icon name="ChevronDown" size={16} className="transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-48 bg-background/95 backdrop-blur-lg border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <a href="#about" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors rounded-t-lg">О нас</a>
+                  <a href="#delivery" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors">Доставка</a>
+                  <a href="#payment" className="block px-4 py-3 text-sm hover:bg-secondary/50 transition-colors rounded-b-lg">Оплата</a>
+                </div>
+              </div>
               <a href="#contacts" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
               <Button size="sm">Связаться</Button>
             </div>
@@ -148,13 +167,157 @@ function Index() {
           </div>
         </section>
 
+        <section id="promo" className="py-24 md:py-32 bg-gradient-to-br from-primary/10 to-secondary/30">
+          <div className="container mx-auto px-6">
+            <div className="fade-on-scroll max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Акции и спецпредложения</h2>
+              <p className="text-lg text-muted-foreground">Выгодные предложения на популярные товары</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <Card className="fade-on-scroll overflow-hidden border-2 border-primary/20">
+                <CardContent className="p-0">
+                  <div className="bg-primary text-white px-6 py-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold">СКИДКА</span>
+                      <span className="text-3xl font-bold">-30%</span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-3">Зимняя распродажа</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Скидки до 30% на весь ассортимент молний и застежек. Успейте купить по выгодной цене!
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                      <Icon name="Clock" size={16} />
+                      <span>До 31 января 2025</span>
+                    </div>
+                    <Button className="w-full">Смотреть товары</Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll overflow-hidden border-2 border-primary/20" style={{ animationDelay: '100ms' }}>
+                <CardContent className="p-0">
+                  <div className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 py-3">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold">ПОДАРОК</span>
+                      <Icon name="Gift" size={28} />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-3">Подарок при заказе</h3>
+                    <p className="text-muted-foreground mb-4">
+                      При заказе от 3000 ₽ — набор ниток в подарок! Разные цвета и высокое качество.
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                      <Icon name="Star" size={16} />
+                      <span>Для всех клиентов</span>
+                    </div>
+                    <Button className="w-full">Оформить заказ</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="blog" className="py-24 md:py-32">
+          <div className="container mx-auto px-6">
+            <div className="fade-on-scroll max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Блог</h2>
+              <p className="text-lg text-muted-foreground">Полезные статьи о шитье и выборе материалов</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="fade-on-scroll group hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-secondary overflow-hidden">
+                    <img 
+                      src="https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/48424235-062c-44e5-b4ec-a0df90b538da.jpg"
+                      alt="Блог"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                      <Icon name="Calendar" size={16} />
+                      <span>15 декабря 2024</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3">Как выбрать нитки для швейной машины</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Подробное руководство по выбору ниток: материалы, толщина, цвет и совместимость.
+                    </p>
+                    <a href="#" className="text-primary font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                      Читать далее
+                      <Icon name="ArrowRight" size={16} />
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll group hover:shadow-xl transition-all duration-300" style={{ animationDelay: '100ms' }}>
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-secondary overflow-hidden">
+                    <img 
+                      src="https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/c216cdcd-1943-4798-bafa-d1c0c450e192.jpg"
+                      alt="Блог"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                      <Icon name="Calendar" size={16} />
+                      <span>10 декабря 2024</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3">Тренды швейной фурнитуры 2025</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Какие пуговицы, молнии и аксессуары будут популярны в новом сезоне.
+                    </p>
+                    <a href="#" className="text-primary font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                      Читать далее
+                      <Icon name="ArrowRight" size={16} />
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll group hover:shadow-xl transition-all duration-300" style={{ animationDelay: '200ms' }}>
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-secondary overflow-hidden">
+                    <img 
+                      src="https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/4473f4ad-8901-4428-a3f8-a55f2b17184f.jpg"
+                      alt="Блог"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                      <Icon name="Calendar" size={16} />
+                      <span>5 декабря 2024</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3">Уход за швейной фурнитурой</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Правила хранения и ухода за молниями, пуговицами и другими материалами.
+                    </p>
+                    <a href="#" className="text-primary font-medium flex items-center gap-1 hover:gap-2 transition-all">
+                      Читать далее
+                      <Icon name="ArrowRight" size={16} />
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         <section id="about" className="py-24 md:py-32 bg-secondary/30">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="fade-on-scroll">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">О компании</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  ШвейПро — ведущий поставщик швейной фурнитуры в России с более чем 10-летней историей. 
+                  ТК Эксклюзив — ведущий поставщик швейной фурнитуры в России с более чем 10-летней историей. 
                   Мы работаем напрямую с европейскими и азиатскими производителями, что позволяет 
                   предлагать лучшие цены на рынке.
                 </p>
@@ -212,11 +375,11 @@ function Index() {
         <section id="delivery" className="py-24 md:py-32 bg-secondary/30">
           <div className="container mx-auto px-6">
             <div className="fade-on-scroll max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Доставка и оплата</h2>
-              <p className="text-lg text-muted-foreground">Удобные способы получения и оплаты заказа</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Доставка</h2>
+              <p className="text-lg text-muted-foreground">Удобные способы получения заказа</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <Card className="fade-on-scroll">
                 <CardContent className="p-8">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
@@ -242,19 +405,6 @@ function Index() {
                   <div className="text-2xl font-bold text-primary">Бесплатно</div>
                 </CardContent>
               </Card>
-
-              <Card className="fade-on-scroll" style={{ animationDelay: '200ms' }}>
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                    <Icon name="CreditCard" size={28} className="text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Способы оплаты</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Банковские карты, наличные, безналичный расчет для юр. лиц.
-                  </p>
-                  <div className="text-sm text-muted-foreground mt-2">Все способы</div>
-                </CardContent>
-              </Card>
             </div>
 
             <div className="fade-on-scroll mt-16 max-w-4xl mx-auto">
@@ -278,7 +428,73 @@ function Index() {
           </div>
         </section>
 
-        <section id="contacts" className="py-24 md:py-32">
+        <section id="payment" className="py-24 md:py-32">
+          <div className="container mx-auto px-6">
+            <div className="fade-on-scroll max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Оплата</h2>
+              <p className="text-lg text-muted-foreground">Безопасные и удобные способы оплаты</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <Card className="fade-on-scroll">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon name="CreditCard" size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Банковские карты</h3>
+                  <p className="text-muted-foreground">
+                    Visa, MasterCard, МИР. Оплата онлайн на сайте или курьеру при получении.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll" style={{ animationDelay: '100ms' }}>
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon name="Wallet" size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Наличные</h3>
+                  <p className="text-muted-foreground">
+                    Оплата наличными курьеру при доставке или в офисе при самовывозе.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="fade-on-scroll" style={{ animationDelay: '200ms' }}>
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <Icon name="Building" size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Безналичный расчёт</h3>
+                  <p className="text-muted-foreground">
+                    Для юридических лиц. Работаем по договору с отсрочкой платежа.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="fade-on-scroll mt-16 max-w-4xl mx-auto">
+              <Card className="border-primary/20">
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Icon name="ShieldCheck" size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">Безопасность платежей</h3>
+                      <p className="text-muted-foreground">
+                        Все платежи защищены по стандарту PCI DSS. Мы не храним данные банковских карт. 
+                        Оплата происходит через защищённое соединение.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacts" className="py-24 md:py-32 bg-secondary/30">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto">
               <div className="fade-on-scroll text-center mb-12">
