@@ -1,85 +1,76 @@
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
 export default function NewsBanners() {
-  const news = [
+  const banners = [
     {
       id: 1,
       title: 'Новое поступление японских молний YKK',
-      description: 'В нашем ассортименте появились премиальные молнии YKK — мировой стандарт качества для профессионалов',
-      date: '25 декабря 2024',
-      icon: 'Sparkles',
-      color: 'from-primary/20 to-primary/5',
-      badge: 'Новинка'
+      description: 'Премиальные молнии YKK — мировой стандарт качества для профессионалов. Широкий выбор размеров и цветов в наличии',
+      image: 'https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/4473f4ad-8901-4428-a3f8-a55f2b17184f.jpg',
+      badge: 'Новинка',
+      buttonText: 'Смотреть молнии',
+      gradient: 'from-primary/90 to-primary/70'
     },
     {
       id: 2,
       title: 'Скидки до 40% на зимнюю коллекцию',
-      description: 'Специальное предложение на весь ассортимент подкладочных тканей и утеплителей до конца января',
-      date: '20 декабря 2024',
-      icon: 'Tag',
-      color: 'from-accent/20 to-accent/5',
-      badge: 'Акция'
+      description: 'Специальное предложение на весь ассортимент подкладочных тканей и утеплителей до конца января 2025',
+      image: 'https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/48424235-062c-44e5-b4ec-a0df90b538da.jpg',
+      badge: 'Акция',
+      buttonText: 'К акциям',
+      gradient: 'from-accent/90 to-accent/70'
     },
     {
       id: 3,
       title: 'Открытие нового шоурума в Москве',
-      description: 'Приглашаем посетить наш новый выставочный зал на Тверской улице. Более 3000 образцов фурнитуры',
-      date: '15 декабря 2024',
-      icon: 'Store',
-      color: 'from-secondary to-secondary/30',
-      badge: 'Событие'
+      description: 'Приглашаем посетить наш новый выставочный зал на Тверской улице. Более 3000 образцов фурнитуры для осмотра',
+      image: 'https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/c216cdcd-1943-4798-bafa-d1c0c450e192.jpg',
+      badge: 'Событие',
+      buttonText: 'Узнать адрес',
+      gradient: 'from-secondary/90 to-secondary/70'
     }
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-secondary/20">
+    <section className="py-16 md:py-24">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">Важные новости</h2>
-          <p className="text-muted-foreground text-lg">Следите за обновлениями и специальными предложениями</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {news.map((item, idx) => (
-            <Card 
-              key={item.id} 
-              className="overflow-hidden group hover:shadow-xl transition-all duration-300 fade-on-scroll"
+        <div className="space-y-6">
+          {banners.map((banner, idx) => (
+            <div
+              key={banner.id}
+              className="relative overflow-hidden rounded-2xl h-[300px] md:h-[400px] group fade-on-scroll"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
-              <div className={`h-2 bg-gradient-to-r ${item.color}`}></div>
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0`}>
-                    <Icon name={item.icon as any} size={24} className="text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-2">
-                      {item.badge}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                style={{ backgroundImage: `url(${banner.image})` }}
+              />
+              <div className={`absolute inset-0 bg-gradient-to-r ${banner.gradient}`} />
+              
+              <div className="relative h-full flex items-center">
+                <div className="container mx-auto px-6 md:px-12">
+                  <div className="max-w-2xl">
+                    <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-4">
+                      {banner.badge}
                     </span>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                      {banner.title}
+                    </h2>
+                    <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
+                      {banner.description}
+                    </p>
+                    <Button 
+                      size="lg" 
+                      className="bg-white text-primary hover:bg-white/90 h-12 px-8"
+                    >
+                      {banner.buttonText}
+                      <Icon name="ArrowRight" size={18} className="ml-2" />
+                    </Button>
                   </div>
                 </div>
-                
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {item.description}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Icon name="Calendar" size={14} />
-                    <span>{item.date}</span>
-                  </div>
-                  <Button variant="ghost" size="sm" className="gap-2">
-                    Подробнее
-                    <Icon name="ArrowRight" size={14} />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>
