@@ -688,6 +688,27 @@ export default function ContentSections() {
                 </Card>
               </div>
             </div>
+
+            <div className="fade-on-scroll mt-8">
+              <Card className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="aspect-[16/9] w-full">
+                    <iframe
+                      src="https://yandex.ru/map-widget/v1/?um=constructor%3A64b3dfe32e8c8f3f8c3c3b3a3b3b3b3b&amp;source=constructor"
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Наше местоположение"
+                      className="w-full h-full"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
