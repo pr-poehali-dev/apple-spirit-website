@@ -7,6 +7,7 @@ import { useCart } from '@/contexts/CartContext';
 import CartDrawer from '@/components/CartDrawer';
 import SearchModal from '@/components/SearchModal';
 import AccountModal from '@/components/AccountModal';
+import ContactModal from '@/components/ContactModal';
 
 export default function Header() {
   const { totalItems } = useCart();
@@ -14,6 +15,7 @@ export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -47,9 +49,7 @@ export default function Header() {
               <Link to="/contacts" className={`text-sm font-medium hover:text-primary transition-colors ${isActive('/contacts') ? 'text-primary' : ''}`}>
                 Контакты
               </Link>
-              <Link to="/contacts">
-                <Button size="sm">Связаться</Button>
-              </Link>
+              <Button size="sm" onClick={() => setIsContactOpen(true)}>Связаться</Button>
               <button 
                 className="p-2 hover:bg-secondary rounded-lg transition-colors"
                 onClick={() => setIsAccountOpen(true)}
@@ -84,6 +84,7 @@ export default function Header() {
       <CartDrawer open={isCartOpen} onOpenChange={setIsCartOpen} />
       <SearchModal open={isSearchOpen} onOpenChange={setIsSearchOpen} />
       <AccountModal open={isAccountOpen} onOpenChange={setIsAccountOpen} />
+      <ContactModal open={isContactOpen} onOpenChange={setIsContactOpen} />
     </>
   );
 }
