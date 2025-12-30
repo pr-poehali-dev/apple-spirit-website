@@ -8,12 +8,12 @@ export default function NewsBanners() {
   const banners = [
     {
       id: 1,
-      title: 'Новое поступление японских молний YKK',
-      description: 'Премиальные молнии YKK — мировой стандарт качества для профессионалов. Широкий выбор размеров и цветов в наличии',
-      image: 'https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/4473f4ad-8901-4428-a3f8-a55f2b17184f.jpg',
-      badge: 'Новинка',
-      buttonText: 'Смотреть молнии',
-      gradient: 'from-primary/90 to-primary/70'
+      title: 'Поступление швейных ниток Мастер 40/2',
+      description: 'Качественные швейные нитки Мастер 40/2 для всех типов тканей. В наличии более 50 цветов. Катушки по 1000, 5000 и 10000 метров',
+      image: 'https://cdn.poehali.dev/projects/e7e9e9b8-0dff-4ddf-a7ac-0d94918f3cc7/files/2718be60-397d-478f-97fe-fedad9be856a.jpg',
+      badge: 'Поступление',
+      buttonText: 'Смотреть нитки',
+      gradient: 'from-secondary/95 to-muted/90'
     },
     {
       id: 2,
