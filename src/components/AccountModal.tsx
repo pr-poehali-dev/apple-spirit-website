@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { useAuth } from '@/contexts/AuthContext';
+import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 
 interface AccountModalProps {
   open: boolean;
@@ -25,6 +26,7 @@ export default function AccountModal({ open, onOpenChange }: AccountModalProps) 
   const [loginLoading, setLoginLoading] = useState(false);
   const [registerLoading, setRegisterLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -215,6 +217,17 @@ export default function AccountModal({ open, onOpenChange }: AccountModalProps) 
                   </>
                 )}
               </Button>
+              <Button
+                type="button"
+                variant="link"
+                className="w-full text-sm"
+                onClick={() => {
+                  onOpenChange(false);
+                  setIsForgotPasswordOpen(true);
+                }}
+              >
+                Забыли пароль?
+              </Button>
             </form>
           </TabsContent>
 
@@ -291,6 +304,10 @@ export default function AccountModal({ open, onOpenChange }: AccountModalProps) 
           </TabsContent>
         </Tabs>
       </DialogContent>
+      <ForgotPasswordModal
+        open={isForgotPasswordOpen}
+        onOpenChange={setIsForgotPasswordOpen}
+      />
     </Dialog>
   );
 }

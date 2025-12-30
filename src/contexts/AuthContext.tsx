@@ -15,6 +15,8 @@ interface AuthContextType {
   register: (email: string, password: string, name: string, phone?: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
+  resetPassword: (email: string, code: string, newPassword: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -119,6 +121,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await loadUser();
   };
 
+  const forgotPassword = async (email: string) => {
+    const response = await fetch(`${AUTH_API}?action=forgot-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to send reset code');
+    }
+  };
+
+  const resetPassword = async (email: string, code: string, newPassword: string) => {
+    const response = await fetch(`${AUTH_API}?action=reset-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, code, newPassword }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to reset password');
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -129,6 +163,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         register,
         logout,
         refreshUser,
+        forgotPassword,
+        resetPassword,
       }}
     >
       {children}
