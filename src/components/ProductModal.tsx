@@ -10,6 +10,7 @@ import {
 import Icon from '@/components/ui/icon';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/contexts/CartContext';
+import NotifyModal from '@/components/NotifyModal';
 
 interface Product {
   id: number;
@@ -17,6 +18,7 @@ interface Product {
   category: string;
   price: string;
   image: string;
+  inStock?: boolean;
 }
 
 interface ProductModalProps {
@@ -28,6 +30,7 @@ interface ProductModalProps {
 export default function ProductModal({ product, open, onOpenChange }: ProductModalProps) {
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
+  const [isNotifyModalOpen, setIsNotifyModalOpen] = useState(false);
 
   if (!product) return null;
 
@@ -97,10 +100,17 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Наличие:</span>
-                  <span className="font-medium text-green-600 flex items-center gap-1">
-                    <Icon name="Check" size={16} />
-                    В наличии
-                  </span>
+                  {product.inStock === false ? (
+                    <span className="font-medium text-orange-600 flex items-center gap-1">
+                      <Icon name="AlertCircle" size={16} />
+                      Нет в наличии
+                    </span>
+                  ) : (
+                    <span className="font-medium text-green-600 flex items-center gap-1">
+                      <Icon name="Check" size={16} />
+                      В наличии
+                    </span>
+                  )}
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Доставка:</span>
@@ -109,24 +119,36 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
               </div>
 
               <div className="flex gap-3">
-                <Button 
-                  className="flex-1 h-12" 
-                  size="lg"
-                  onClick={handleAddToCart}
-                  disabled={added}
-                >
-                  {added ? (
-                    <>
-                      <Icon name="Check" className="mr-2" size={20} />
-                      Добавлено
-                    </>
-                  ) : (
-                    <>
-                      <Icon name="ShoppingCart" className="mr-2" size={20} />
-                      В корзину
-                    </>
-                  )}
-                </Button>
+                {product.inStock === false ? (
+                  <Button 
+                    className="flex-1 h-12" 
+                    size="lg"
+                    variant="outline"
+                    onClick={() => setIsNotifyModalOpen(true)}
+                  >
+                    <Icon name="Bell" className="mr-2" size={20} />
+                    Узнать о поступлении
+                  </Button>
+                ) : (
+                  <Button 
+                    className="flex-1 h-12" 
+                    size="lg"
+                    onClick={handleAddToCart}
+                    disabled={added}
+                  >
+                    {added ? (
+                      <>
+                        <Icon name="Check" className="mr-2" size={20} />
+                        Добавлено
+                      </>
+                    ) : (
+                      <>
+                        <Icon name="ShoppingCart" className="mr-2" size={20} />
+                        В корзину
+                      </>
+                    )}
+                  </Button>
+                )}
                 <Button variant="outline" size="lg" className="h-12 w-12 p-0">
                   <Icon name="Heart" size={20} />
                 </Button>
@@ -152,6 +174,11 @@ export default function ProductModal({ product, open, onOpenChange }: ProductMod
           </div>
         </div>
       </DialogContent>
+      <NotifyModal 
+        open={isNotifyModalOpen}
+        onOpenChange={setIsNotifyModalOpen}
+        productName={product.name}
+      />
     </Dialog>
   );
 }
